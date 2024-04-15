@@ -31,7 +31,22 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin
 # Added by Toolbox App
 export PATH="$PATH:/home/sam/.local/share/JetBrains/Toolbox/scripts"
 
-. "$HOME/.cargo/env"
+if [ -f $HOME/.cargo/env ]; then
+    . "$HOME/.cargo/env"
+fi
 
 export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
+
+if [ -f ~/.fzf.bash ]; then
+    source ~/.fzf.bash
+else
+    echo "fzf not installed"
+fi
+
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init --cmd cd bash)"
+else 
+    echo "zoxide not installed"
+fi
+
 
