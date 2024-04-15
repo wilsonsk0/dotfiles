@@ -32,3 +32,6 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin
 export PATH="$PATH:/home/sam/.local/share/JetBrains/Toolbox/scripts"
 
 . "$HOME/.cargo/env"
+
+export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
+
