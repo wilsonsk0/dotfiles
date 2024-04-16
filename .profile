@@ -30,7 +30,7 @@ fi
 # cargo
 if [ -f $HOME/.cargo/env ]; then
     . "$HOME/.cargo/env"
-else [ -d $HOME/.cargo/bin ]; then
+elif [ -d $HOME/.cargo/bin ]; then
     PATH="$PATH:$HOME/.carg/bin"
 fi
 
