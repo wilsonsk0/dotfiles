@@ -4,7 +4,7 @@ vim.o.smarttab = true
 vim.o.expandtab = true
 vim.o.tabstop = 8
 vim.o.softtabstop = 0
-
+vim.o.number = true
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
