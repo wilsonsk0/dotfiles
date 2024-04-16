@@ -26,27 +26,32 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin
-
-# Added by Toolbox App
-export PATH="$PATH:/home/sam/.local/share/JetBrains/Toolbox/scripts"
-
+# Tooling ================================================
+# cargo
 if [ -f $HOME/.cargo/env ]; then
     . "$HOME/.cargo/env"
+else [ -d $HOME/.cargo/bin ]; then
+    PATH="$PATH:$HOME/.carg/bin"
+fi
+
+# go
+if [ -d /usr/local/go/bin ]; then
+    PATH="$PATH:/usr/local/go/bin"
+fi
+if [ -d $HOME/go/bin ]; then
+    PATH="$PATH:$HOME/go/bin"
+fi
+
+# JetBrains tools
+if [ -d $HOME/.local/share/JetBrains/Toolboc/scripts ]; then
+    PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
+fi
+
+# nvm
+if [ -d $HOME/.nvm ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
 
 export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
-
-if [ -f ~/.fzf.bash ]; then
-    source ~/.fzf.bash
-else
-    echo "fzf not installed"
-fi
-
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init --cmd cd bash)"
-else 
-    echo "zoxide not installed"
-fi
-
 
