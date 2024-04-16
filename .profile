@@ -8,6 +8,14 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -18,32 +26,32 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Tooling ================================================
+# cargo
 if [ -f $HOME/.cargo/env ]; then
     . "$HOME/.cargo/env"
-elif [ -f $HOME/.cargo/bin ]; then
-    PATH="$HOME/.cargo/bin:$PATH"
+else [ -d $HOME/.cargo/bin ]; then
+    PATH="$PATH:$HOME/.carg/bin"
 fi
 
-# add local go bin to path
-if [ -f $HOME/go/bin ]; then
+# go
+if [ -d /usr/local/go/bin ]; then
+    PATH="$PATH:/usr/local/go/bin"
+fi
+if [ -d $HOME/go/bin ]; then
     PATH="$PATH:$HOME/go/bin"
 fi
 
-# terminal prompt
-export PS1="\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
-if [ -f $HOME/.git-prompt.sh ]; then
-	. $HOME/.git-prompt.sh
-	export PS1="\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1 ' (%s)')\n\$ "
+# JetBrains tools
+if [ -d $HOME/.local/share/JetBrains/Toolboc/scripts ]; then
+    PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 fi
 
-if [ -f ~/.pyenv ]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    command -v > /dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
+# nvm
+if [ -d $HOME/.nvm ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
 
-alias ls="ls -lxF --color=auto"
-alias ll="ls -lh"
-alias lla="ls -lha"
-alias vim="nvim"
+export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
 
