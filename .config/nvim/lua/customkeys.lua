@@ -15,6 +15,7 @@ wk.register({
         b = { telescope.buffers, "find buffer" },
         h = { telescope.help_tags, "help tags"},
     },
+    g = { "<cmd>FloatermNew --name=git lazygit<CR>", "git" }
 }, { prefix = "<leader>" })
 
 
@@ -26,8 +27,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         wk.register({
-            g = {
-                name = "goto",
+            n = {
+                name = "navigate to",
                 D = { vim.lsp.buf.declaration, "declaration" },
                 d = { vim.lsp.buf.defintion, "definition" },
                 i = { vim.lsp.buf.implementation, "implementation" },

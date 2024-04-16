@@ -42,7 +42,6 @@ require("lazy").setup({
         init = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "clangd",
                     "lua_ls",
                     "rust_analyzer",
                 },
@@ -100,5 +99,8 @@ require("lazy").setup({
         'nvim-telescope/telescope.nvim',
         tag = '0.1.6',
         dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    {
+        'voldikss/vim-floaterm'
     },
 })

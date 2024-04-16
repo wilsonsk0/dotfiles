@@ -8,14 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-fi
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -26,27 +18,32 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin
-
-# Added by Toolbox App
-export PATH="$PATH:/home/sam/.local/share/JetBrains/Toolbox/scripts"
-
 if [ -f $HOME/.cargo/env ]; then
     . "$HOME/.cargo/env"
+elif [ -f $HOME/.cargo/bin ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
-
-if [ -f ~/.fzf.bash ]; then
-    source ~/.fzf.bash
-else
-    echo "fzf not installed"
+# add local go bin to path
+if [ -f $HOME/go/bin ]; then
+    PATH="$PATH:$HOME/go/bin"
 fi
 
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init --cmd cd bash)"
-else 
-    echo "zoxide not installed"
+# terminal prompt
+export PS1="\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
+if [ -f $HOME/.git-prompt.sh ]; then
+	. $HOME/.git-prompt.sh
+	export PS1="\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1 ' (%s)')\n\$ "
 fi
 
+if [ -f ~/.pyenv ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    command -v > /dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
+alias ls="ls -lxF --color=auto"
+alias ll="ls -lh"
+alias lla="ls -lha"
+alias vim="nvim"
 
