@@ -1,6 +1,6 @@
 local wk = require("which-key")
 local tree = require("nvim-tree.api").tree
-local telescope = require("telescope.builtin")
+local telescope_builtin = require("telescope.builtin")
 
 wk.register({
     e = {
@@ -10,10 +10,10 @@ wk.register({
     },
     f = {
         name = "files",
-        f = { telescope.find_files, "find file" },
-        g = { telescope.live_grep, "live grep" },
-        b = { telescope.buffers, "find buffer" },
-        h = { telescope.help_tags, "help tags"},
+        f = { telescope_builtin.find_files, "find file" },
+        g = { telescope_builtin.live_grep, "live grep" },
+        b = { telescope_builtin.buffers, "find buffer" },
+        h = { telescope_builtin.help_tags, "help tags"},
     },
     g = { "<cmd>FloatermNew --name=git lazygit<CR>", "git" }
 }, { prefix = "<leader>" })

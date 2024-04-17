@@ -11,7 +11,11 @@ require("lazy").setup({
             vim.opt.termguicolors = true
         end,
         config = function()
-            require("nvim-tree").setup()
+            require("nvim-tree").setup({
+                view = {
+                    preserve_window_proportions = true,
+                },
+            })
         end,
     },
 
@@ -48,22 +52,37 @@ require("lazy").setup({
             })
         end,
     },
-    --	"mfussenegger/nvim-dap",
-    --	{
-    --		"rcarriga/nvim-dap-ui",
-    --		dependencies = {
-    --			"mfussenegger/nvim-dap",
-    --			"nvim-neotest/nvim-nio"
-    --		}
-    --	},
-    --	{
-    --		"folke/neodev.nvim",
-    --		config = function()
-    --			require("neodev").setup({
-    --				library = { plugins = {"nvim-dap-ui"}, types = true},
-    --			})
-    --		end,
-    --	},
+    -- debugger
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = { "williamboman/mason.nvim" },
+        config = function()
+            require("mason-nvim-dap").setup({
+                ensure_installed = {
+                    "cpptools",
+                },
+                handlers = {},
+            })
+        end,
+    },
+    {
+        "mfussenegger/nvim-dap",
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio"
+        },
+        config = function()
+            local dap, dapui = require("dap"), require("dapui")
+            dapui.setup()
+            dap.listeners.before.attach.dapui_config = dapui.open
+            dap.listeners.before.launch.dapui_config = dapui.open
+            dap.listeners.before.event_terminated.dapui_config = dapui.close
+            dap.listeners.before.event_exited.dapui_config = dapui.close
+        end
+    },
 
     {
         "nvimtools/none-ls.nvim",
@@ -103,4 +122,28 @@ require("lazy").setup({
     {
         'voldikss/vim-floaterm'
     },
+    {
+        "folke/neodev.nvim",
+        config = function()
+            require("neodev").setup({
+                library = { plugins = { "nvim-dap-ui" }, types = true },
+            })
+        end,
+    },
+    {
+        "Civitasv/cmake-tools.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require("cmake-tools").setup({
+                cmake_build_directory = "cmake-build-${variant:buildType}",
+                cmake_dap_configuration = {
+                    name = "cpp",
+                    type = "cppdbg"
+                },
+            })
+        end,
+        event = { "BufReadPre *.cpp", "BufNewFile *.cpp", "BufReadPre CMakeLists.txt", "BufNewFile CMakeLists.txt" },
+    }
 })
