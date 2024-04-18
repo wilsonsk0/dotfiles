@@ -46,6 +46,7 @@ require("lazy").setup({
         init = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
+                    "cmake",
                     "lua_ls",
                     "rust_analyzer",
                 },
@@ -137,6 +138,7 @@ require("lazy").setup({
         },
         config = function()
             require("cmake-tools").setup({
+                cmake_build_options = { "-j18" },
                 cmake_build_directory = "cmake-build-${variant:buildType}",
                 cmake_dap_configuration = {
                     name = "cpp",

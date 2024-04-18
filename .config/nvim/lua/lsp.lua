@@ -8,6 +8,6 @@ lspconfig.glsl_analyzer.setup({
     capabilities = capabilities,
     filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp" },
 })
-
-
+lspconfig.cmake.setup({ capabilities = capabilities })
+lspconfig.ltex.setup({ capabilities = capabilities })
 
