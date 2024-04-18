@@ -124,3 +124,10 @@ fi
 
 source $HOME/.git-completion.bash
 
+if [ -f $HOME/.cargo/env ]; then
+    . "$HOME/.cargo/env"
+fi
+if [ -d $HOME/.cargo/bin ]; then
+    PATH="$PATH:$HOME/.cargo/bin"
+fi
+
