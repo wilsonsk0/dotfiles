@@ -144,6 +144,7 @@ require("lazy").setup({
                     type = "cppdbg"
                 },
             })
+            require("cmake")
         end,
         event = { "BufReadPre *.cpp", "BufNewFile *.cpp", "BufReadPre CMakeLists.txt", "BufNewFile CMakeLists.txt" },
     }
