@@ -18,5 +18,7 @@ install: all
 	@cargo install --path zoxide
 	@echo "-- Installing JetBrainsMono patched font"
 	@cd nerd-fonts && ./install.sh JetBrainsMono > /dev/null
+	@echo "-- Installing delta"
+	@cargo install --path delta
 	@stow .
 
