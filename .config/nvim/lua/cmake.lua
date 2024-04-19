@@ -79,3 +79,7 @@ require("which-key").register({
         },
     },
 }, { prefix = "<leader>" })
+
+vim.keymap.set("n", "<F5>", "<cmd>CMakeDebug<CR>")
+vim.keymap.set("n", "<C-F5>", "<cmd>CMakeRun<CR>")
+

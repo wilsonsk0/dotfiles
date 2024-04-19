@@ -68,6 +68,9 @@ require("lazy").setup({
     },
     {
         "mfussenegger/nvim-dap",
+        config = function ()
+            require("dapkeys")
+        end,
     },
     {
         "rcarriga/nvim-dap-ui",
