@@ -4,7 +4,7 @@
 	email = swilson0702@gmail.com
 	name = Sam Wilson
 [core]
-	editor = vim
+	editor = nvim
 	autocrlf = input
 	pager = delta
 [interactive]
