@@ -16,5 +16,7 @@ install: all
 	@./.fzf/install --key-bindings --completion --no-update-rc --no-bash --no-zsh --no-fish > /dev/null
 	@echo "-- Install zoxide"
 	@cargo install --path zoxide
+	@echo "-- Installing JetBrainsMono patched font"
+	@cd nerd-fonts && ./install.sh JetBrainsMono
 	@stow .
 

@@ -10,3 +10,6 @@
 [submodule "ripgrep"]
 	path = ripgrep
 	url = https://github.com/BurntSushi/ripgrep
+[submodule "nerd-fonts"]
+	path = nerd-fonts
+	url = https://github.com/ryanoasis/nerd-fonts.git

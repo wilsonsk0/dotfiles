@@ -5,3 +5,4 @@ if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
 fi
 
 eval "$(fzf --bash)"
+
