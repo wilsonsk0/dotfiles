@@ -1,21 +1,18 @@
-[submodule "external_delta"]
-	path = external_delta
-	url = https://github.com/dandavison/delta.git
 [submodule "dot_tmux/plugins/external_tpm"]
 	path = dot_tmux/plugins/external_tpm
 	url = https://github.com/tmux-plugins/tpm.git
-[submodule "external_nerd_fonts"]
-	path = external_nerd_fonts
-	url = https://github.com/ryanoasis/nerd-fonts.git
-[submodule "external_ripgrep"]
-	path = external_ripgrep
-	url = https://github.com/BurntSushi/ripgrep
-[submodule "external_zoxide"]
-	path = external_zoxide
-	url = https://github.com/ajeetdsouza/zoxide.git
 [submodule "external_dot_pyenv"]
 	path = external_dot_pyenv
 	url = https://github.com/pyenv/pyenv.git
 [submodule "external_dot_fzf"]
 	path = external_dot_fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule ".chezmoidata/external_zoxide"]
+	path = private_external_zoxide
+	url = https://github.com/ajeetdsouza/zoxide.git
+[submodule ".chezmoidata/external_delta"]
+	path = private_external_delta
+	url = https://github.com/dandavison/delta.git
+[submodule ".chezmoidata/external_ripgrep"]
+	path = private_external_ripgrep
+	url = https://github.com/BurntSushi/ripgrep
