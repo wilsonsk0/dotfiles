@@ -149,7 +149,15 @@ require("lazy").setup({
             })
             require("cmake")
         end,
-        event = { "BufReadPre *.cpp", "BufNewFile *.cpp", "BufReadPre CMakeLists.txt", "BufNewFile CMakeLists.txt" },
+        cond = function ()
+            local search_results = vim.fs.find("CMakeLists.txt", {
+                upward = true,
+                stop = vim.uv.os_homedir(),
+                path = vim.uv.cwd(),
+            })
+            return (#search_results ~= 0)
+        end,
+        enabled = true,
     },
     {
         "christoomey/vim-tmux-navigator",
