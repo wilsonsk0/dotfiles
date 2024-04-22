@@ -7,12 +7,12 @@
 [submodule "external_dot_fzf"]
 	path = external_dot_fzf
 	url = https://github.com/junegunn/fzf.git
-[submodule ".chezmoidata/external_zoxide"]
+[submodule "private_external_zoxide"]
 	path = private_external_zoxide
 	url = https://github.com/ajeetdsouza/zoxide.git
-[submodule ".chezmoidata/external_delta"]
+[submodule "private_external_delta"]
 	path = private_external_delta
 	url = https://github.com/dandavison/delta.git
-[submodule ".chezmoidata/external_ripgrep"]
+[submodule "private_external_ripgrep"]
 	path = private_external_ripgrep
 	url = https://github.com/BurntSushi/ripgrep
