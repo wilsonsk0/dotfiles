@@ -1,0 +1,8 @@
+{{- $idLike := .chezmoi.osRelease | jq ".idLike | select(test(\"debian\"))" | quote -}}
+{{ if ne $idLike "" -}}
+#!/bin/bash
+
+{{ range .packages.linux -}}
+sudo apt install {{ . | quote }}
+{{ end -}}
+{{ end -}}
