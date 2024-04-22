@@ -1,18 +1,18 @@
-[submodule "dot_tmux/plugins/external_tpm"]
+[submodule "tmux/plugins/external_tpm"]
 	path = dot_tmux/plugins/external_tpm
 	url = https://github.com/tmux-plugins/tpm.git
-[submodule "external_dot_pyenv"]
+[submodule "pyenv"]
 	path = external_dot_pyenv
 	url = https://github.com/pyenv/pyenv.git
-[submodule "external_dot_fzf"]
+[submodule "fzf"]
 	path = external_dot_fzf
 	url = https://github.com/junegunn/fzf.git
-[submodule "private_external_zoxide"]
+[submodule "zoxide"]
 	path = private_external_zoxide
 	url = https://github.com/ajeetdsouza/zoxide.git
-[submodule "private_external_delta"]
+[submodule "delta"]
 	path = private_external_delta
 	url = https://github.com/dandavison/delta.git
-[submodule "private_external_ripgrep"]
+[submodule "ripgrep"]
 	path = private_external_ripgrep
 	url = https://github.com/BurntSushi/ripgrep

@@ -31,9 +31,6 @@ fi
 if [ -f $HOME/.cargo/env ]; then
     . "$HOME/.cargo/env"
 fi
-if [ -d $HOME/.cargo/bin ]; then
-    PATH="$PATH:$HOME/.cargo/bin"
-fi
 
 # go
 if [ -d /usr/local/go/bin ]; then
@@ -55,4 +52,8 @@ if [ -d $HOME/.nvm ]; then
 fi
 
 export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
+
+export PYENV_ROOT=$HOME/.pyenv
+command -v pyenv >/dev/null || export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
 
