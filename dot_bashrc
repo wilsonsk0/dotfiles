@@ -119,9 +119,7 @@ if [ -f ~/.fzf.bash ]; then
     source ~/.fzf.bash
 fi
 
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init --cmd cd bash)"
-fi
+eval "$(/home/test_user/.cargo/bin/zoxide init --cmd cd bash)"
 
 source $HOME/.git-completion.bash
 
