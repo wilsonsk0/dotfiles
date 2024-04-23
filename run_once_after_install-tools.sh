@@ -1,16 +1,22 @@
 #!/bin/bash
 
 source $HOME/.cargo/env
-cd $(chezmoi source-path)
 
 cargo install git-delta
 cargo install ripgrep
 cargo install zoxide
 
-~/.fzf/install --key-bindings --completion --update-rc
 (
-    cd ~/.pyenv
-    ./src/configure
-    make -C src
+    echo Installing fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+)
+(
+    echo Installing pyenv
+    curl https://pyenv.run | bash
+)
+(
+    echo Installing tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 )
 
