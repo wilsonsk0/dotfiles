@@ -1,4 +1,35 @@
 require("lazy").setup({
+    -- themes
+    {
+        "catppuccin/nvim", name = "catpuccin", priority = 1000
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        config = function()
+            local theme = "dragon"
+            require("kanagawa").setup({
+                theme = theme,
+                background = {
+                    dark = theme,
+                },
+            })
+        end
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+    {
+        "baliestri/aura-theme",
+        lazy = false,
+        priority = 1000,
+        config = function(plugin)
+            vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+            vim.cmd([[colorscheme aura-dark]])
+        end
+    },
     -- file explorer	
     {
         "nvim-tree/nvim-tree.lua",
@@ -114,10 +145,6 @@ require("lazy").setup({
         end,
     },
 
-    -- theme
-    {
-        "catppuccin/nvim", name = "catpuccin", priority = 1000
-    },
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.6',
@@ -149,7 +176,7 @@ require("lazy").setup({
             })
             require("cmake")
         end,
-        cond = function ()
+        cond = function()
             local search_results = vim.fs.find("CMakeLists.txt", {
                 upward = true,
                 stop = vim.uv.os_homedir(),

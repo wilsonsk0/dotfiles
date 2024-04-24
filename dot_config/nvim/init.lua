@@ -24,4 +24,6 @@ require("plugins")
 require("lsp")
 require("customkeys")
 
-vim.cmd.colorscheme "catppuccin"
+-- catpuccin
+-- kanagawa
+vim.cmd.colorscheme "tokyonight-storm"
