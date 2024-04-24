@@ -87,11 +87,14 @@ require("lazy").setup({
     -- debugger
     {
         "jay-babu/mason-nvim-dap.nvim",
-        dependencies = { "williamboman/mason.nvim" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "mfussenegger/nvim-dap",
+        },
         config = function()
             require("mason-nvim-dap").setup({
                 ensure_installed = {
-                    "cpptools",
+                    "cppdbg",
                 },
                 handlers = {},
             })
@@ -157,7 +160,7 @@ require("lazy").setup({
         "folke/neodev.nvim",
         config = function()
             require("neodev").setup({
-                library = { plugins = { "nvim-dap-ui" }, types = true },
+                library = { plugins = { "nvim-dap-ui", "cmake-tools.nvim" }, types = true },
             })
         end,
     },
@@ -169,6 +172,8 @@ require("lazy").setup({
         config = function()
             require("cmake-tools").setup({
                 cmake_build_directory = "cmake-build-${variant:buildType}",
+                cmake_soft_link_compile_commands = false,
+                cmake_compile_commands_from_lsp = true,
                 cmake_dap_configuration = {
                     name = "cpp",
                     type = "cppdbg"

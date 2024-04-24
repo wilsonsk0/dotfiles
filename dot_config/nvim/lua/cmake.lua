@@ -80,6 +80,12 @@ require("which-key").register({
     },
 }, { prefix = "<leader>" })
 
-vim.keymap.set("n", "<F5>", "<cmd>CMakeDebug<CR>")
-vim.keymap.set("n", "<C-F5>", "<cmd>CMakeRun<CR>")
+vim.keymap.set("n", "<F5>", function ()
+    local dap = require("dap")
+    if dap.session() == nil then
+        vim.cmd("CMakeDebug")
+    else
+        dap.continue()
+    end
+end)
 
