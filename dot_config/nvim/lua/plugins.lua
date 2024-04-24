@@ -119,6 +119,13 @@ require("lazy").setup({
             dap.listeners.before.launch.dapui_config = dapui.open
             dap.listeners.before.event_terminated.dapui_config = dapui.close
             dap.listeners.before.event_exited.dapui_config = dapui.close
+            local blink_tree = function()
+                local tree = require("nvim-tree.api").tree
+                tree.close()
+                tree.open()
+            end
+            dap.listeners.after.event_terminated.blink_tree = blink_tree
+            dap.listeners.after.event_exited.blink_tree = blink_tree
         end
     },
 
