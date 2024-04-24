@@ -5,7 +5,7 @@ local dap = require("dap")
 --     command = "/usr/local/bin/gdb",
 --     args = { "-i", "dap" }
 -- }
--- 
+--
 -- dap.configurations.c = {
 --     {
 --         name = "Launch",
@@ -18,7 +18,7 @@ local dap = require("dap")
 --         stopAtBeginningOfMainSubprogram = false,
 --     },
 -- }
--- 
+--
 -- dap.configurations.cpp = dap.configurations.c
 
 vim.keymap.set('n', '<F5>', dap.continue)
@@ -37,8 +37,8 @@ wk.register({
     },
     d = {
         name = "debugging",
-        r = { dap.repl.open, "open repl"},
-        l = { dap.run_last, "run last configuration"},
+        r = { dap.repl.open, "open repl" },
+        l = { dap.run_last, "run last configuration" },
         f = { function()
             local widgets = require("dap.ui.widgets")
             widgets.centered_float(widgets.frames)
@@ -53,6 +53,6 @@ wk.register({
 wk.register({
     ["<leader>dl"] = { require("dap.ui.widgets").preview, "preview" },
     ["<leader>dh"] = { require("dap.ui.widgets").hover, "hover" },
-    { mode = {"n", "v"} }
+    { mode = { "n", "v" } }
 })
 

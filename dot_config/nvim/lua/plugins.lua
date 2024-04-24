@@ -96,7 +96,22 @@ require("lazy").setup({
                 ensure_installed = {
                     "cppdbg",
                 },
-                handlers = {},
+                handlers = {
+                    function(config)
+                        -- default handlers
+                        require("mason-nvim-dap").default_setup(config)
+                    end,
+                    cppdbg = function(config)
+                        for _, v in pairs(config.configurations) do
+                            v.setupCommands = {
+                                text = '-enable-pretty-printing',
+                                description = 'enable pretty printing',
+                                ignoreFailures = false
+                            }
+                        end
+                         require("mason-nvim-dap").default_setup(config)
+                    end,
+                },
             })
         end,
     },
