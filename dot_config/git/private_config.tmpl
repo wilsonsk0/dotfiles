@@ -1,7 +1,7 @@
 [init]
 	defaultBranch = main
 [user]
-	email = {{ .email | quote }}
+	email = "samuel.wilson@bluehalo.com"
 	name = Sam Wilson
 [core]
 	editor = nvim
@@ -15,3 +15,12 @@
 	conflictstyle = diff3
 [diff]
 	colorMoved = default
+{{ if eq .chezmoi.hostname "ss-westwc-lnx" }}
+[credential]
+	credentialStore = secretservice
+	helper = 
+	helper = /usr/local/bin/git-credential-manager-core
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+{{ end }}
+
