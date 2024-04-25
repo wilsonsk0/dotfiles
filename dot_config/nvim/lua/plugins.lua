@@ -95,6 +95,7 @@ require("lazy").setup({
             require("mason-nvim-dap").setup({
                 ensure_installed = {
                     "cppdbg",
+                    "codelldb",
                 },
                 handlers = {
                     function(config)
@@ -198,7 +199,7 @@ require("lazy").setup({
                 cmake_compile_commands_from_lsp = true,
                 cmake_dap_configuration = {
                     name = "cpp",
-                    type = "cppdbg"
+                    type = "codelldb"
                 },
             })
             require("cmake")
