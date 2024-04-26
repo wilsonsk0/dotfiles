@@ -15,7 +15,7 @@
 	conflictstyle = diff3
 [diff]
 	colorMoved = default
-{{ if eq .chezmoi.hostname "ss-westwc-lnx" }}
+{{ if or (eq .chezmoi.hostname "ss-westwc-lnx") (eq .chezmoi.hostname "centos7-desktop") }}
 [credential]
 	credentialStore = secretservice
 	helper = 
