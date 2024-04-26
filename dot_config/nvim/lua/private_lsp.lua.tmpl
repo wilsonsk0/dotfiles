@@ -1,7 +1,12 @@
 local lspconfig = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.clangd.setup({ capabilities = capabilities })
+lspconfig.clangd.setup({ 
+    capabilities = capabilities,
+{{ if eq .chezmoi.hostname "ss-westwc-lnx" }}
+    cmd = { "/usr/local/bin/clangd" },
+{{ end }}
+})
 lspconfig.lua_ls.setup({ capabilities = capabilities })
 lspconfig.rust_analyzer.setup({ capabilities = capabilities })
 

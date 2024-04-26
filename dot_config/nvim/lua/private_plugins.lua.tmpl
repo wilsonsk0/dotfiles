@@ -77,7 +77,9 @@ require("lazy").setup({
         init = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
+                    {{ if ne .chezmoi.hostname "ss-westwc-lnx" }}
                     "clangd",
+                    {{ end }}
                     "lua_ls",
                     "rust_analyzer",
                 },
