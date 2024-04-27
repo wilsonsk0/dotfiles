@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/.cargo/env
+source $HOME/.local/share/cargo/env
 cargo install git-delta
 cargo install ripgrep
 cargo install zoxide
