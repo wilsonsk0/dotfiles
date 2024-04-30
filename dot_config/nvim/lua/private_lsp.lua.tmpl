@@ -1,12 +1,25 @@
 local lspconfig = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.clangd.setup({ 
+lspconfig.clangd.setup({
     capabilities = capabilities,
-{{ if eq .chezmoi.hostname "ss-westwc-lnx" }}
+{{- if eq .chezmoi.hostname "ss-westwc-lnx" }}
     cmd = { "/usr/local/bin/clangd" },
-{{ end }}
+{{- end }}
 })
 lspconfig.lua_ls.setup({ capabilities = capabilities })
 lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+
+{{ if eq .chezmoi.hostname "ss-westwc-lnx" }}
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    pattern = {"*.glsl", "*.vert", "*.frag", "*.geom", "*.tess", "*.geom", "*.comp"},
+    callback = function()
+        vim.lsp.start({
+            name = "glsl-analyzer",
+            cmd = { "glsl-lsp" },
+            root_dir = vim.uv.cwd(),
+        })
+    end,
+})
+{{- end }}
 

@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             n = {
                 name = "navigate to",
                 c = { vim.lsp.buf.declaration, "declaration" },
-                d = { vim.lsp.buf.defintion, "definition" },
+                d = { vim.lsp.buf.definition, "definition" },
                 i = { vim.lsp.buf.implementation, "implementation" },
                 r = { vim.lsp.buf.references, "references" },
                 t = { vim.lsp.buf.type_definition, "type definition" },

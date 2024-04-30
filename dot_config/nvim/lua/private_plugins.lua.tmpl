@@ -77,9 +77,9 @@ require("lazy").setup({
         init = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    {{ if ne .chezmoi.hostname "ss-westwc-lnx" }}
+                    {{- if ne .chezmoi.hostname "ss-westwc-lnx" -}}
                     "clangd",
-                    {{ end }}
+                    {{- end -}}
                     "lua_ls",
                     "rust_analyzer",
                 },
@@ -200,8 +200,13 @@ require("lazy").setup({
                 cmake_soft_link_compile_commands = false,
                 cmake_compile_commands_from_lsp = true,
                 cmake_dap_configuration = {
+                {{- if eq .chezmoi.hostname "ss-westwc-lnx" -}}
+                    name = "cpp",
+                    type = "cppdbg"
+                {{- else -}}
                     name = "cpp",
                     type = "codelldb"
+                {{- end -}}
                 },
             })
             require("cmake")
