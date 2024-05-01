@@ -1,6 +1,6 @@
-local pick_build_target = function(opts)
-    local cmake_tools = require("cmake-tools")
+local cmake_tools = require("cmake-tools")
 
+local pick_build_target = function(opts)
     local targets = cmake_tools.get_build_targets().data.targets
     local display_targets = cmake_tools.get_build_targets().data.display_targets
 
@@ -35,8 +35,6 @@ local pick_build_target = function(opts)
 end
 
 local pick_launch_target = function(opts)
-    local cmake_tools = require("cmake-tools")
-
     local targets = cmake_tools.get_launch_targets().data.targets
 
     require("telescope.pickers").new(opts, {
@@ -77,6 +75,12 @@ require("which-key").register({
             b = { pick_build_target, "build target" },
             l = { pick_launch_target, "launch target" },
         },
+        b = { "<cmd>CMakeBuild<CR>", "build" },
+        g = { "<cmd>CMakeGenerate<CR>", "generate" },
+        c = { function()
+            local build_dir = require("cmake-tools.config").build_directory.filename
+            vim.cmd("FloatermNew ccmake " .. build_dir)
+        end, "open cache gui" },
     },
 }, { prefix = "<leader>" })
 
