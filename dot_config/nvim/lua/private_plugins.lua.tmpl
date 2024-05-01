@@ -200,13 +200,13 @@ require("lazy").setup({
                 cmake_soft_link_compile_commands = false,
                 cmake_compile_commands_from_lsp = true,
                 cmake_dap_configuration = {
-                {{- if eq .chezmoi.hostname "ss-westwc-lnx" -}}
+                {{- if eq .chezmoi.hostname "ss-westwc-lnx" }}
                     name = "cpp",
                     type = "cppdbg"
                 {{- else -}}
                     name = "cpp",
                     type = "codelldb"
-                {{- end -}}
+                {{- end }}
                 },
             })
             require("cmake")
