@@ -1,5 +1,19 @@
 local cmake_tools = require("cmake-tools")
 
+cmake_tools.setup({
+    cmake_build_directory = "cmake-build-${variant:buildType}",
+    cmake_soft_link_compile_commands = false,
+    cmake_compile_commands_from_lsp = true,
+    cmake_dap_configuration = {
+        name = "cpp",
+        {{- if eq .chezmoi.hostname "ss-westwc-lnx" }}
+        type = "cppdbg"
+        {{- else -}}
+        type = "codelldb"
+        {{- end }}
+    },
+})
+
 local pick_build_target = function(opts)
     local targets = cmake_tools.get_build_targets().data.targets
     local display_targets = cmake_tools.get_build_targets().data.display_targets
@@ -84,7 +98,7 @@ require("which-key").register({
     },
 }, { prefix = "<leader>" })
 
-vim.keymap.set("n", "<F5>", function ()
+vim.keymap.set("n", "<F5>", function()
     local dap = require("dap")
     if dap.session() == nil then
         vim.cmd("CMakeDebug")
@@ -92,4 +106,3 @@ vim.keymap.set("n", "<F5>", function ()
         dap.continue()
     end
 end)
-

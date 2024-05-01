@@ -77,12 +77,11 @@ require("lazy").setup({
         init = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    {{- if ne .chezmoi.hostname "ss-westwc-lnx" -}}
-                    "clangd",
-                    {{- end -}}
+                    "clangd@15.0.6",
                     "lua_ls",
                     "rust_analyzer",
                     "lemminx",
+                    "glsl_analyzer",
                 },
             })
         end,
@@ -171,11 +170,8 @@ require("lazy").setup({
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        config = function() 
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = { "c", "cpp", "lua" },
-            })
-            vim.cmd("TSUpdate")
+        config = function()
+            require("treesitter")
         end,
     },
 
@@ -219,20 +215,6 @@ require("lazy").setup({
             "nvim-lua/plenary.nvim",
         },
         config = function()
-            require("cmake-tools").setup({
-                cmake_build_directory = "cmake-build-${variant:buildType}",
-                cmake_soft_link_compile_commands = false,
-                cmake_compile_commands_from_lsp = true,
-                cmake_dap_configuration = {
-                {{- if eq .chezmoi.hostname "ss-westwc-lnx" }}
-                    name = "cpp",
-                    type = "cppdbg"
-                {{- else -}}
-                    name = "cpp",
-                    type = "codelldb"
-                {{- end }}
-                },
-            })
             require("cmake")
         end,
         cond = function()
