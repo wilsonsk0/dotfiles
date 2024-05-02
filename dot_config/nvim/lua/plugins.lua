@@ -113,7 +113,7 @@ require("lazy").setup({
                                 ignoreFailures = false
                             }
                         end
-                         require("mason-nvim-dap").default_setup(config)
+                        require("mason-nvim-dap").default_setup(config)
                     end,
                 },
             })
@@ -244,5 +244,11 @@ require("lazy").setup({
             { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
+    },
+    {
+        "m4xshen/hardtime.nvim",
+        dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+        opts = {},
+        config = function () require("hardtime").setup({}) end,
     },
 })
