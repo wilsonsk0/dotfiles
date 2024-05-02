@@ -1,26 +1,5 @@
 local dap = require("dap")
 
--- dap.adapters.gdb = {
---     type = "executable",
---     command = "/usr/local/bin/gdb",
---     args = { "-i", "dap" }
--- }
---
--- dap.configurations.c = {
---     {
---         name = "Launch",
---         type = "gdb",
---         request = "launch",
---         program = function()
---             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
---         end,
---         cwd = "${workspaceFolder}",
---         stopAtBeginningOfMainSubprogram = false,
---     },
--- }
---
--- dap.configurations.cpp = dap.configurations.c
-
 vim.keymap.set('n', '<F5>', dap.continue)
 vim.keymap.set('n', '<F6>', dap.terminate)
 vim.keymap.set('n', '<F10>', dap.step_over)

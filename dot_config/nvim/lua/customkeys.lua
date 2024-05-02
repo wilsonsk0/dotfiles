@@ -14,6 +14,7 @@ wk.register({
         g = { telescope_builtin.live_grep, "live grep" },
         b = { telescope_builtin.buffers, "find buffer" },
         h = { telescope_builtin.help_tags, "help tags" },
+        s = { "<cmd>NvimTreeFindFile<CR>", "show file in tree" },
     },
     g = { "<cmd>FloatermNew --name=git lazygit<CR>", "git" }
 }, { prefix = "<leader>" })

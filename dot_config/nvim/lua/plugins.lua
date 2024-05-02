@@ -77,11 +77,12 @@ require("lazy").setup({
         init = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "clangd@15.0.6",
+                    "clangd",
                     "lua_ls",
                     "rust_analyzer",
                     "lemminx",
                     "glsl_analyzer",
+                    "cmake",
                 },
             })
         end,
@@ -137,8 +138,7 @@ require("lazy").setup({
             dap.listeners.before.launch.dapui_config = dapui.open
             dap.listeners.before.event_terminated.dapui_config = dapui.close
             dap.listeners.before.event_exited.dapui_config = dapui.close
- 
-            local dapui_tree_enter = function(session, body)
+            local dapui_tree_enter = function(session)
                 if session.tree_state ~= nil then
                     return
                 end
@@ -147,7 +147,7 @@ require("lazy").setup({
                 tree.close()
             end
 
-            local dapui_tree_exit = function(session, body)
+            local dapui_tree_exit = function(session)
                 local tree = require("nvim-tree.api").tree
                 if session.tree_state then
                     tree.open()
@@ -244,5 +244,5 @@ require("lazy").setup({
             { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
-    }
+    },
 })
