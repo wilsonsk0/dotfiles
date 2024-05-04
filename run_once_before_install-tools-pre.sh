@@ -14,7 +14,15 @@ export PYENV_ROOT=$HOME/.local/share/pyenv
 curl https://pyenv.run | bash
 
 echo Installing tpm
-if [ ! -d ~/.local/share/tmux/plugins/tpm ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
-fi
+git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
+
+echo Installing oh-my-zsh
+installer="$(mktemp --tmpdir ohmyzshinstaller_XXXXXX.sh)"
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > $installer
+export ZSH=$HOME/.local/share/oh-my-zsh
+cat $installer | sh -s -- --unattended --keep-zshrc
+rm $installer
+
+mkdir -p $HOME/.local/share/zsh
+git clone https://github.com/sindresorhus/pure.git "$HOME/.local/share/zsh/pure"
 
