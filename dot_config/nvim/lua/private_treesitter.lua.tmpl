@@ -1,8 +1,8 @@
+{{- if eq .chezmoi.hostname "ss-westwc-lnx" }}
+require("nvim-treesitter.install").compilers = { "/usr/local/bin/clang-17" }
+{{- end }}
 require("nvim-treesitter.configs").setup({
     ensure_installed = { "c", "cpp", "lua", "glsl", "rust", "python" },
 })
-{{- if eq .chezmoi.hostname "ss-westwc-lnx" }}
-require("nvim-treesitter.install").compilers = { "clang" }
-{{- end }}
 vim.cmd("TSUpdate")
 
