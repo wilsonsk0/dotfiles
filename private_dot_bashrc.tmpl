@@ -121,3 +121,9 @@ eval "$(zoxide init --cmd cd bash)"
 
 export PATH=$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts
 
+{{- if eq .chezmoi.hostname "ss-westwc-lnx" }}
+export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
+export TEXMFHOME=$HOME/.local/share/texlive/2024
+{{- end }}
+
+

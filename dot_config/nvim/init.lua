@@ -5,6 +5,7 @@ vim.o.expandtab = true
 vim.o.tabstop = 8
 vim.o.softtabstop = 0
 vim.o.number = true
+vim.o.relativenumber = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -25,4 +26,4 @@ require("customkeys")
 
 -- catpuccin
 -- kanagawa
-vim.cmd.colorscheme "catppuccin-frappe"
+vim.cmd.colorscheme "tokyonight-storm"

@@ -25,7 +25,9 @@ wk.register({
         s = { function()
             local widgets = require("dap.ui.widgets")
             widgets.centered_float(widgets.scopes)
-        end, "locals" }
+        end, "locals" },
+        u = { dap.up, "go up one frame" },
+        d = { dap.down, "go down one frame"},
     },
 }, { prefix = "<leader>" })
 
