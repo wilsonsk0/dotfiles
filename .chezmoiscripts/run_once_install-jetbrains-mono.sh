@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 cd /tmp
 curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz
@@ -8,3 +8,4 @@ fc-cache -f JetBrainsMono
 
 rm -rf JetBrainsMono/
 rm JetBrainsMono.tar.xz
+

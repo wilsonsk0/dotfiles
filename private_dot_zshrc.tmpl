@@ -123,11 +123,9 @@ alias l='ls -CFh'
 alias vim='nvim'
 alias .='source'
 
-export RUSTUP_HOME=$HOME/.local/share/rustup
-export CARGO_HOME=$HOME/.local/share/cargo
 export PYENV_ROOT=$HOME/.local/share/pyenv
 
-[ -f $CARGO_HOME/env ] && source $CARGO_HOME/env
+[ -f $$HOME/.cargo/env ] && source $HOME/.cargo/env
 [ -d $PYENV_ROOT/bin ] && export PATH="$PYENV_ROOT/bin:$PATH"
 [ -f $HOME/.config/fzf/fzf.zsh ] && source $HOME/.config/fzf/fzf.zsh
 
