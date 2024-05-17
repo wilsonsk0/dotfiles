@@ -7,14 +7,14 @@ wk.register({
         name = "explorer",
         t = { tree.toggle, "toggle explorer" },
         e = { tree.open, "focus on explorer" },
+        s = { "<cmd>NvimTreeFindFile<CR>", "show file in tree" },
     },
-    f = {
-        name = "files",
+    s = {
+        name = "search",
         f = { telescope_builtin.find_files, "find file" },
         g = { telescope_builtin.live_grep, "live grep" },
         b = { telescope_builtin.buffers, "find buffer" },
         h = { telescope_builtin.help_tags, "help tags" },
-        s = { "<cmd>NvimTreeFindFile<CR>", "show file in tree" },
     },
     g = { "<cmd>FloatermNew --name=git lazygit<CR>", "git" }
 }, { prefix = "<leader>" })
@@ -28,12 +28,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         wk.register({
-            n = {
-                name = "navigate to",
-                c = { vim.lsp.buf.declaration, "declaration" },
+            t = {
+                name = "go to",
+                D = { vim.lsp.buf.declaration, "declaration" },
                 d = { vim.lsp.buf.definition, "definition" },
                 i = { vim.lsp.buf.implementation, "implementation" },
-                r = { vim.lsp.buf.references, "references" },
                 t = { vim.lsp.buf.type_definition, "type definition" },
             },
             w = {
@@ -45,6 +44,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         }, { prefix = "<leader>", buffer = ev.buf })
 
         wk.register({
+            ["sr"] = { "<cmd>Trouble lsp_references toggle<cr>", "lsp references" },
             l = {
                 name = "language",
                 a = { vim.lsp.buf.code_action, "code action" },
@@ -52,8 +52,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 k = { vim.lsp.buf.signature_help, "signature help" },
                 f = { function() vim.lsp.buf.format({ async = true }) end, "format" },
                 n = { vim.lsp.buf.rename, "rename" },
+                s = { "<cmd>Trouble lsp_document_symbols toggle<CR>", "symbols" },
+                p = { "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", "buffer problems" },
+                P = { "<cmd>Trouble diagnostics toggle<CR>", "all problems" },
             },
         }, { mode = { "n", "v" }, prefix = "<leader>", buffer = ev.buf })
     end,
 })
-
