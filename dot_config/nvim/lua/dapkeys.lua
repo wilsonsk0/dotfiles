@@ -65,3 +65,10 @@ dap.listeners.before.attach.keymap = enable_active_debug_keys
 dap.listeners.before.launch.keymap = enable_active_debug_keys
 dap.listeners.before.event_terminated.keymap = disable_active_debug_keys
 dap.listeners.before.event_exited.keymap = disable_active_debug_keys
+
+dap.adapters.lldb = {
+    type = 'executable',
+    command = '/usr/local/bin/lldb-vscode',
+    name = 'lldb',
+}
+

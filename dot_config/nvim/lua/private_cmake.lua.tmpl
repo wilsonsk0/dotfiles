@@ -7,7 +7,7 @@ cmake_tools.setup({
     cmake_dap_configuration = {
         name = "cpp",
         {{- if eq .chezmoi.hostname "ss-westwc-lnx" }}
-        type = "cppdbg"
+        type = "lldb"
         {{- else -}}
         type = "codelldb"
         {{- end }}
@@ -98,6 +98,7 @@ require("which-key").register({
     },
 }, { prefix = "<leader>" })
 
+vim.keymap.set("n", "<S-F5>", function() vim.cmd("CMakeRun") end)
 vim.keymap.set("n", "<F5>", function()
     local dap = require("dap")
     if dap.session() == nil then

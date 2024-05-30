@@ -95,3 +95,5 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+fpath+=~/.local/share/zsh/functions
+
