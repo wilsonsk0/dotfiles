@@ -1,9 +1,16 @@
 require("lazy").setup({
-    { "folke/neodev.nvim", opts = {} },
     {
-    'nvim-telescope/telescope.nvim', tage = '0.1.8',
-      dependencies = { 'nvim-lua/plenary.nvim' }
+        "folke/neodev.nvim",
+        config = function()
+            require("neodev").setup()
+        end,
     },
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.8',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    { 'voldikss/vim-floaterm' },
     -- theme
     {
         "catppuccin/nvim",
@@ -20,7 +27,7 @@ require("lazy").setup({
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
-            "3rd/image.nvim",     -- Optional image support in preview window: See `# Preview Mode` for more information
+            "3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
         },
         init = function()
             vim.g.loaded_netrw = 1
@@ -52,10 +59,6 @@ require("lazy").setup({
         "williamboman/mason.nvim",
         config = function() require("mason").setup() end,
     },
-
-    --    {
-    --        'voldikss/vim-floaterm'
-    --    },
 
     {
         "christoomey/vim-tmux-navigator",

@@ -1,4 +1,4 @@
-vim.g.mapleader = "<Space>"
+vim.g.mapleader = ' '
 vim.o.tabstop = 4
 vim.o.softabstop = -1
 vim.o.shiftwidth = 0
@@ -19,5 +19,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("plugins")
+require("keymap")
 
 vim.cmd.colorscheme "catppuccin-macchiato"
