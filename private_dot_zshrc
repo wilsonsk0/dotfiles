@@ -59,7 +59,7 @@ setopt hist_find_no_dups
 ## cd
 setopt auto_pushd
 
-source ~/.profile
+#source ~/.profile
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case insensitive matches for completions
@@ -87,13 +87,6 @@ alias ls='ls --color'
 alias ll='ls -lh'
 
 # Shell integrations
-[ -f $$HOME/.cargo/env ] && source $HOME/.cargo/env
-[ -d $PYENV_ROOT/bin ] && export PATH="$PYENV_ROOT/bin:$PATH"
-
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 fpath+=~/.local/share/zsh/functions
 
