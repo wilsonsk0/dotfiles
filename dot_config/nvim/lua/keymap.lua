@@ -16,6 +16,18 @@ wk.register({
     },
 }, { prefix = "<leader>" })
 
+wk.register({
+    ["<C-j>"] = { "vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'", "expand" },
+    ["<C-l>"] = { "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'", "expand or jump" },
+    ["<Tab>"] = { "vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)': '<Tab>'", "jump forward" },
+    ["<S-Tab>"] = { "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)': '<S-Tab>'", "jump backward" },
+}, { mode = { "i", "s" }, expr = true })
+
+wk.register({
+    s = { "<Plug>(vsnip-select-text)", "select text for $TM_SELECTED_TEXT" },
+    S = { "<Plug>(vsnip-cut-text)", "cut text for $TM_SELECTED_TEXT" },
+}, { mode = { "n", "x" } })
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {

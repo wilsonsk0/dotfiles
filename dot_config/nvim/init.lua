@@ -3,6 +3,7 @@ vim.o.tabstop = 4
 vim.o.softabstop = -1
 vim.o.shiftwidth = 0
 vim.o.expandtab = true
+vim.g.vsnip_snippet_dir = vim.fn.stdpath("data") .. "/snippets"
 
 -- setup folke/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -22,3 +23,5 @@ require("plugins")
 require("keymap")
 
 vim.cmd.colorscheme "catppuccin-macchiato"
+
+
