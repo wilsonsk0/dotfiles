@@ -90,3 +90,8 @@ alias ll='ls -lh'
 
 fpath+=~/.local/share/zsh/functions
 
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+

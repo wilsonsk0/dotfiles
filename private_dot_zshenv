@@ -6,17 +6,16 @@ fi
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# python tooling
 export PYENV_ROOT=$HOME/.local/share/pyenv
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
+# rust tooling
 export RUSTUP_HOME=$HOME/.local/share/rustup
 export CARGO_HOME=$HOME/.local/share/cargo
 [ -f $CARGO_HOME/env ] && source $CARGO_HOME/env
 
-eval "$(zoxide init --cmd cd zsh)"
-
+# go tooling
 export GOENV_ROOT=$HOME/.local/share/goenv
 export PATH=$GOENV_ROOT/bin:$PATH
 export GOPATH=$HOME/.local/go
@@ -24,8 +23,6 @@ eval "$(goenv init -)"
 export PATH=$GOROOT/bin:$PATH
 export PATH=$PATH:$GOPATH/bin
 
-[ -f $$HOME/.cargo/env ] && source $HOME/.cargo/env
-
+# fzf
 export PATH=$PATH:$HOME/.local/share/fzf/bin
-eval "$(fzf --zsh)"
 
