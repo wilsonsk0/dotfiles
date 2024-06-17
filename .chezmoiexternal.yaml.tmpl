@@ -1,0 +1,35 @@
+".local/share/pyenv":
+    type: "git-repo"
+    url: "https://github.com/pyenv/pyenv.git"
+    exact: false 
+    refreshPeriod: "168h"
+".local/share/tmux/plugins/tpm":
+    type: "git-repo"
+    url: "https://github.com/tmux-plugins/tpm.git"
+    exact: true
+    refreshPeriod: "168h"
+".local/share/fzf":
+    type: "git-repo"
+    url: "https://github.com/junegunn/fzf.git"
+    clone.args: ["--depth", "1"]
+    exact: true
+    refreshPeriod: "168h"
+".local/share/goenv":
+    type: "git-repo"
+    url: "https://github.com/go-nv/goenv.git"
+    clone.args: ["--depth", "1"]
+    exact: true
+    refreshPeriod: "168h"
+".local/share/pixmaps/Alacritty.svg":
+    type: "file"
+    url: "https://github.com/alacritty/alacritty/blob/master/extra/logo/alacritty-term.svg"
+    exact: true
+    refreshPeriod: "168h"
+{{- if .gcm }}
+".local/bin":
+    type: "archive"
+    url: "https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.5.0/gcm-linux_amd64.2.5.0.tar.gz"
+    exact: false
+    refreshPeriod: "168h"
+{{- end }}
+

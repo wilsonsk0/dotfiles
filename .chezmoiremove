@@ -3,4 +3,5 @@
 .tmux.conf
 .fzf/
 .pyenv/
+.config/chezmoi/chezmoi.toml
 

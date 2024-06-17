@@ -2,10 +2,15 @@
 {{- if hasKey .chezmoi.osRelease "id" -}}
 {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
+
 {{- $email := promptStringOnce . "email" "Email address" -}}
-[data]
-    osid = {{ $osid | quote }}
-    email = {{ $email | quote }}
-[edit]
-    command = "nvim"
+
+{{- $gcm := promptBoolOnce . "gcm" "Use git-credential-manager" -}}
+
+data:
+    osid: {{ $osid | quote }}
+    email: {{ $email | quote }}
+    gcm: {{ $gcm }}
+edit:
+    command: "nvim"
 
