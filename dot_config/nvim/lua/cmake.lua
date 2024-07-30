@@ -67,6 +67,38 @@ local pick_launch_target = function(opts)
     }):find()
 end
 
+local smart_contiue = function()
+    local dap = require("dap")
+    if dap.session() == nil then
+        vim.cmd("CMakeDebug")
+    else
+        dap.continue()
+    end
+end
+
+local register_keys = function()
+    local wk = require("which-key")
+    wk.add({
+        { "<leader>c",  group = "cmake" },
+        { "<leader>cb", "<cmd>CMakeBuild<CR>",    desc = "build" },
+        { "<leader>cg", "<cmd>CMakeGenerate<CR>", desc = "generate" },
+        {
+            "<leader>cc",
+            function()
+                local build_dir = require("cmake-tools.config").build_directory.filename
+                vim.cmd("FloatermNew ccmake " .. build_dir)
+            end,
+            desc = "open cache gui"
+        },
+        { "<leader>cs",  group = "select" },
+        { "<leader>csb", pick_build_target,  desc = "build target" },
+        { "<leader>csl", pick_launch_target, desc = "launch target" },
+
+        { "<F5>",   smart_contiue,       desc = "launch or continue" },
+        { "<S-F5>", "<cmd>CMakeRun<CR>", desc = "run without debugging" },
+    })
+end
+
 return {
     "Civitasv/cmake-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -85,41 +117,10 @@ return {
             cmake_compile_commands_from_lsp = true,
             cmake_dap_configuration = {
                 name = "cpp",
-                type = "cppdbg",
+                type = "codelldb",
             },
         })
 
-        -- set cmake related key binds here in case cmake is not loaded
-        local wk = require("which-key")
-        wk.register({
-            c = {
-                name = "cmake",
-                s = {
-                    name = "select",
-                    b = { pick_build_target, "build target" },
-                    l = { pick_launch_target, "launch target" },
-                },
-                b = { "<cmd>CMakeBuild<CR>", "build" },
-                g = { "<cmd>CMakeGenerate<CR>", "generate" },
-                c = { function()
-                    local build_dir = require("cmake-tools.config").build_directory.filename
-                    vim.cmd("FloatermNew ccmake " .. build_dir)
-                end, "open cache gui" },
-            },
-        }, { prefix = "<leader>" })
-        wk.register({
-            ["<F5>"] = {
-                function()
-                    local dap = require("dap")
-                    if dap.session() == nil then
-                        vim.cmd("CMakeDebug")
-                    else
-                        dap.continue()
-                    end
-                end,
-                "launch or continue"
-            },
-            ["<S-F5>"] = { "<cmd>CMakeRun<CR>", "run without debugging" },
-        }, {})
-    end
+        register_keys()
+    end,
 }

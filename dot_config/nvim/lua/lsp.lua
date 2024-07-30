@@ -3,7 +3,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "clangd", "lua_ls", "cmake" },
+                ensure_installed = { "clangd", "lua_ls", "cmake", "pylsp" },
             })
         end,
     },
@@ -16,6 +16,12 @@ return {
             lspconfig.clangd.setup { capabilities = capabilities }
             lspconfig.lua_ls.setup { capabilities = capabilities }
             lspconfig.cmake.setup { capabilities = capabilities }
+            lspconfig.pylsp.setup {
+                filetypes = {"python"},
+                settings = {
+                    formatCommand = {"black"}
+                }
+            }
         end,
     },
     {

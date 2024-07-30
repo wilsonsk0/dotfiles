@@ -18,6 +18,20 @@ require("lazy").setup({
         lazy = false,
         priority = 1000,
     },
+    {
+        "echasnovski/mini.icons",
+        opts = {},
+        lazy = true,
+        specs = {
+            { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+        },
+        init = function()
+            package.preload["nvim-web-devicons"] = function()
+                require("mini.icons").mock_nvim_web_devicons()
+                return package.loaded["nvim-web-devicons"]
+            end
+        end,
+    },
 
     -- file explorer	
     {
@@ -25,9 +39,8 @@ require("lazy").setup({
         branch = "v3.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
-            "3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
+            "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
         init = function()
             vim.g.loaded_netrw = 1
@@ -57,7 +70,11 @@ require("lazy").setup({
     -- package manager
     {
         "williamboman/mason.nvim",
-        config = function() require("mason").setup() end,
+        config = function()
+            require("mason").setup({
+                ensure_installed = { "black" },
+            })
+        end,
     },
 
     {
@@ -77,6 +94,18 @@ require("lazy").setup({
             { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
+    },
+    {
+        "nvimtools/none-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.cmake_format,
+                    null_ls.builtins.diagnostics.tidy,
+                }
+            })
+        end,
     },
 
     require("completion"),
