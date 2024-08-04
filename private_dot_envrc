@@ -1,0 +1,24 @@
+export PYENV_ROOT=$HOME/.local/share/pyenv
+export RUSTUP_HOME=$HOME/.local/share/rustup
+export CARGO_HOME=$HOME/.local/share/cargo
+export GOENV_ROOT=$HOME/.local/share/goenv
+
+PATH_rm "$HOME/.local/bin" "$PYENV_ROOT/bin" "$GOENV_ROOT/bin" "$HOME/.local/share/fzf/bin"
+path_rm XDG_DATA_DIRS "$HOME/.local/share"
+
+PATH_add $GOENV_ROOT/bin
+eval "$(goenv init -)"
+PATH_rm "$GOROOT/bin" "$GOPATH/bin"
+
+PATH_add $HOME/.local/bin
+PATH_add $PYENV_ROOT/bin
+
+PATH_add $GOROOT/bin
+PATH_add $GOPATH/bin
+
+PATH_add $HOME/.local/share/fzf/bin
+
+path_add XDG_DATA_DIRS $HOME/.local/share
+
+source $CARGO_HOME/env
+
