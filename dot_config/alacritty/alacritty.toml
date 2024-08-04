@@ -79,7 +79,7 @@ mouse = "Middle"
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [shell]
-program = "zsh"
+program = "fish"
 
 [window]
 decorations = "full"
