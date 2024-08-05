@@ -19,9 +19,9 @@ wk.add({
     { "<leader>fh", function() require("telescope.builtin").help_tags() end,                                     desc = "help tags" },
 
     { "<leader>t",  group = "tree" },
-    { "<leader>tt", "<cmd>Neotree toggle<CR>",                                                                   desc = "toggle" },
-    { "<leader>tf", "<cmd>Neotree focus<CR>",                                                                    desc = "focus" },
-    { "<leader>tc", "<cmd>Neotree close<CR>",                                                                    desc = "close" },
+    { "<leader>tf", "<cmd>Neotree float<CR>",                                                                    desc = "files" },
+    { "<leader>tg", "<cmd>Neotree float git_status<CR>",                                                         desc = "git_status" },
+    { "<leader>tb", "<cmd>Neotree float buffers<CR>",                                                            desc = "buffers" },
 
     { "<F6>",       function() require("dap").terminate() end,                                                   desc = "terminate" },
     { "<F10>",      function() require("dap").step_over() end,                                                   desc = "step over" },
@@ -37,6 +37,9 @@ wk.add({
     { "<leader>dd", function() require("dap").down() end,                                                        desc = "go down one frame" },
     { "<leader>df", show_frames,                                                                                 desc = "frames" },
     { "<leader>ds", show_locals,                                                                                 desc = "locals" },
+
+    { "<Tab>",      "<cmd>bn<cr>",                                                                               desc = "next buffer" },
+    { "<S-Tab>",    "<cmd>bp<cr>",                                                                               desc = "prev buffer" },
 })
 
 -- Use LspAttach autocommand to only map the following keys

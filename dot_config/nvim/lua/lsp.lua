@@ -17,18 +17,22 @@ return {
             lspconfig.lua_ls.setup { capabilities = capabilities }
             lspconfig.cmake.setup { capabilities = capabilities }
             lspconfig.pylsp.setup {
-                filetypes = {"python"},
+                filetypes = { "python" },
                 settings = {
-                    formatCommand = {"black"}
+                    pylsp = {
+                        plugins = {
+                            black = {
+                                enabled = true,
+                                line_length = 120,
+                            },
+                            isort = {
+                                enabled = true,
+                            },
+                        }
+                    }
                 }
             }
             lspconfig.rust_analyzer.setup { capabilities = capabilities }
         end,
-    },
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        opts = {},
-        config = function(_, opts) require 'lsp_signature'.setup(opts) end
     },
 }

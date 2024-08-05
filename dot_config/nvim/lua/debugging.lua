@@ -29,6 +29,8 @@ return {
             dap.listeners.before.event_exited.dapui_config = function()
                 dapui.close()
             end
+
+            dap.defaults.codelldb.exception_breakpoints = {"uncaught"}
         end
     },
 }
