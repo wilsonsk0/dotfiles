@@ -7,7 +7,7 @@ return {
         "jay-babu/mason-nvim-dap.nvim",
         config = function()
             require('mason-nvim-dap').setup({
-                ensure_installed = { "codelldb", "debugpy" },
+                ensure_installed = { "codelldb", "debugpy", "cppdbg" },
                 handlers = {}, -- sets up dap in the predefined manner
             })
         end,
@@ -30,7 +30,7 @@ return {
                 dapui.close()
             end
 
-            dap.defaults.codelldb.exception_breakpoints = {"uncaught"}
+            dap.defaults.codelldb.exception_breakpoints = { "uncaught" }
         end
     },
 }
