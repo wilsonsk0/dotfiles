@@ -19,7 +19,8 @@ wk.add({
     { "<leader>fh", function() require("telescope.builtin").help_tags() end,                                     desc = "help tags" },
 
     { "<leader>t",  group = "tree" },
-    { "<leader>tf", "<cmd>Neotree float<CR>",                                                                    desc = "files" },
+    { "<leader>tf", "<cmd>Neotree float reveal<CR>",                                                             desc = "files" },
+    { "<leader>tl", "<cmd>Neotree left reveal<CR>",                                                              desc = "files" },
     { "<leader>tg", "<cmd>Neotree float git_status<CR>",                                                         desc = "git_status" },
     { "<leader>tb", "<cmd>Neotree float buffers<CR>",                                                            desc = "buffers" },
 
@@ -47,6 +48,13 @@ wk.add({
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
+        -- don't register keys for null-ls
+        local client_id = ev.data.client_id
+        local client_name = vim.lsp.get_client_by_id(client_id).name
+        if (client_name == "null-ls") then
+            return
+        end
+
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         wk.add({
@@ -68,24 +76,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.cmd([[
-    " Expand
-    imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-    smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-
-    " Expand or jump
-    imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-    smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-
     " Jump forward or backward
     imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
     smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
     imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
     smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-
-    " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
-    " See https://github.com/hrsh7th/vim-vsnip/pull/50
-    nmap        s   <Plug>(vsnip-select-text)
-    xmap        s   <Plug>(vsnip-select-text)
-    nmap        S   <Plug>(vsnip-cut-text)
-    xmap        S   <Plug>(vsnip-cut-text)
 ]])
