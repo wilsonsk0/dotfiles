@@ -64,11 +64,6 @@ return {
                     { name = 'buffer' },
                 })
             })
-            cmp.setup.filetype('cmake', {
-                sources = cmp.config.sources({
-                    { name = 'path' }
-                }),
-            })
 
             -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
             cmp.setup.cmdline({ '/', '?' }, {
