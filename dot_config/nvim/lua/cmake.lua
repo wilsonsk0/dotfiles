@@ -91,11 +91,11 @@ local register_keys = function()
             desc = "open cache gui"
         },
         { "<leader>cs",  group = "select" },
-        { "<leader>csb", pick_build_target,  desc = "build target" },
-        { "<leader>csl", pick_launch_target, desc = "launch target" },
+        { "<leader>csb", pick_build_target,   desc = "build target" },
+        { "<leader>csl", pick_launch_target,  desc = "launch target" },
 
-        { "<F5>",   smart_contiue,       desc = "launch or continue" },
-        { "<S-F5>", "<cmd>CMakeRun<CR>", desc = "run without debugging" },
+        { "<F5>",        smart_contiue,       desc = "launch or continue" },
+        { "<S-F5>",      "<cmd>CMakeRun<CR>", desc = "run without debugging" },
     })
 end
 
@@ -117,7 +117,14 @@ return {
             cmake_compile_commands_from_lsp = true,
             cmake_dap_configuration = {
                 name = "cpp",
-                type = "codelldb",
+                type = "cppdbg",
+                setupCommands = {
+                    {
+                        text = '-enable-pretty-printing',
+                        description = 'enable pretty printing',
+                        ignoreFailures = false
+                    },
+                },
             },
         })
 
