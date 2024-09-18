@@ -8,7 +8,7 @@ require("lazy").setup({
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' }
     },
     { 'voldikss/vim-floaterm' },
     -- theme
@@ -17,6 +17,19 @@ require("lazy").setup({
         name = "catpuccin",
         lazy = false,
         priority = 1000,
+        config = function()
+            require("catppuccin").setup({
+                integrations = {
+                    gitsigns = true,
+                    mason = true,
+                    neotree = true,
+                    cmp = true,
+                    dap = true,
+                    dap_ui = true,
+                    which_key = true,
+                },
+            })
+        end,
     },
     {
         "echasnovski/mini.icons",
@@ -76,7 +89,11 @@ require("lazy").setup({
         "williamboman/mason.nvim",
         config = function()
             require("mason").setup({
-                ensure_installed = { "black" },
+                ensure_installed = {
+                    "black",
+                    "codespell",
+                    "glslls",
+                },
             })
         end,
     },
@@ -100,14 +117,67 @@ require("lazy").setup({
         },
     },
     {
-        "nvimtools/none-ls.nvim",
+        'lewis6991/gitsigns.nvim',
         config = function()
-            local null_ls = require("null-ls")
-            null_ls.setup({
-                sources = {
-                    null_ls.builtins.formatting.cmake_format,
-                    null_ls.builtins.diagnostics.tidy,
+            require("gitsigns").setup({
+                signcolumn = true,
+                numhl = true,
+                linehl = false,
+                word_diff = false,
+                current_line_blame = true,
+                current_line_blame_opts = {
+                    virt_text_pos = 'eol',
+                    delay = 300,
                 }
+            })
+        end,
+    },
+    {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            vim.opt.termguicolors = true
+            local bufferline = require("bufferline")
+            bufferline.setup({
+                highlights = require("catppuccin.groups.integrations.bufferline").get(),
+                options = {
+                    indicator = { style = "underline" },
+                    style_preset = bufferline.style_preset.minimal,
+                    diagnostics = "nvim_lsp",
+                    offsets = {
+                        {
+                            filetype = "neo-tree",
+                            text = "",
+                            text_align = "left",
+                            separator = true,
+                        }
+                    },
+                    show_close_icon = false,
+                    custom_filter = function(buf_number)
+                        if vim.bo[buf_number].filetype ~= "qf" then
+                            return true
+                        end
+                    end,
+                }
+            })
+        end,
+    },
+    -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            -- add any options here
+        },
+    },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require("lualine").setup({
+                options = {
+                    theme = "catppuccin",
+                },
             })
         end,
     },
