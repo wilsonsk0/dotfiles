@@ -19,17 +19,35 @@ return {
                         vim.fn["vsnip#anonymous"](args.body)
                     end,
                 },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                mapping = {
+                    ['<C-n>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                        elseif cmp.visible_docs() then
+                            cmp.scroll_docs(4)
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 'c' }),
+                    ['<C-p>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+                        elseif cmp.visible_docs() then
+                            cmp.scroll_docs(-4)
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 'c' }),
+                    ['<Tab>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.confirm({ select = true })
+                        else
+                            fallback()
+                        end
+                    end),
+                    ['<C-q>'] = cmp.mapping.open_docs(),
                     ['<C-s>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                }),
+                },
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'vsnip' },
@@ -45,6 +63,11 @@ return {
                 }, {
                     { name = 'buffer' },
                 })
+            })
+            cmp.setup.filetype('cmake', {
+                sources = cmp.config.sources({
+                    { name = 'path' }
+                }),
             })
 
             -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
