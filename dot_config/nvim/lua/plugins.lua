@@ -8,7 +8,23 @@ require("lazy").setup({
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' }
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-telescope/telescope-ui-select.nvim'
+        },
+        config = function()
+            local telescope = require('telescope')
+            telescope.setup {
+                extensions = {
+                    ['ui-select'] = {
+                        require('telescope.themes').get_dropdown {}
+                    },
+                },
+            }
+
+            telescope.load_extension('ui-select')
+        end,
     },
     { 'voldikss/vim-floaterm' },
     -- theme
@@ -62,7 +78,6 @@ require("lazy").setup({
         end,
         config = function()
             require("neo-tree").setup({
-                enable_cursor_hijack = true,
                 close_if_last_window = true,
                 popup_border_style = "rounded",
                 window = {

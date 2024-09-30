@@ -26,7 +26,8 @@ return {
                 cmd = {
                     "clangd",
                     "--offset-encoding=utf-16",
-                }
+                },
+                filetypes={"c", "cpp", "objcpp", "cuda"},
             }
             lspconfig.lua_ls.setup { capabilities = capabilities }
             lspconfig.cmake.setup { capabilities = capabilities }
@@ -47,6 +48,7 @@ return {
                 }
             }
             lspconfig.rust_analyzer.setup { capabilities = capabilities }
+            lspconfig.pbls.setup { capabilities = capabilities }
         end,
     },
     {
