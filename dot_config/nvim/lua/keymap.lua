@@ -1,53 +1,10 @@
-local wk = require("which-key")
-
-local show_frames = function()
-    local widgets = require("dap.ui.widgets")
-    widgets.centered_float(widgets.frames)
-end
-local show_locals = function()
-    local widgets = require("dap.ui.widgets")
-    widgets.centered_float(widgets.scopes)
-end
-
-wk.add({
-    { "<leader>g",  "<cmd>FloatermNew --name=git lazygit<CR>",                                                   desc = "git" },
-
-    { "<leader>f",  group = "find" },
-    { "<leader>ff", function() require("telescope.builtin").find_files() end,                                    desc = "find file" },
-    { "<leader>fg", function() require("telescope.builtin").live_grep() end,                                     desc = "live grep" },
-    { "<leader>fb", function() require("telescope.builtin").buffers() end,                                       desc = "find buffer" },
-    { "<leader>fh", function() require("telescope.builtin").help_tags() end,                                     desc = "help tags" },
-
-    { "<leader>t",  group = "tree" },
-    { "<leader>tf", "<cmd>Neotree float reveal<CR>",                                                             desc = "files" },
-    { "<leader>tl", "<cmd>Neotree left reveal<CR>",                                                              desc = "files" },
-    { "<leader>tg", "<cmd>Neotree float git_status<CR>",                                                         desc = "git_status" },
-    { "<leader>tb", "<cmd>Neotree float buffers<CR>",                                                            desc = "buffers" },
-
-    { "<F6>",       function() require("dap").terminate() end,                                                   desc = "terminate" },
-    { "<F10>",      function() require("dap").step_over() end,                                                   desc = "step over" },
-    { "<F11>",      function() require("dap").step_into() end,                                                   desc = "step into" },
-    { "<F12>",      function() require("dap").step_out() end,                                                    desc = "step out" },
-
-    { "<leader>d",  group = "debugging" },
-    { "<leader>db", function() require("dap").toggle_breakpoint() end,                                           desc = "toggle breakpoint" },
-    { "<leader>dB", function() require("dap").set_breakpoint() end,                                              desc = "set breakpoint" },
-    { "<leader>dl", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, desc = "set log point" },
-    { "<leader>dr", function() require("dap").repl.open() end,                                                   desc = "open repl" },
-    { "<leader>du", function() require("dap").up() end,                                                          desc = "go up one frame" },
-    { "<leader>dd", function() require("dap").down() end,                                                        desc = "go down one frame" },
-    { "<leader>df", show_frames,                                                                                 desc = "frames" },
-    { "<leader>ds", show_locals,                                                                                 desc = "locals" },
-
-    { "<Tab>",      "<cmd>bn<cr>",                                                                               desc = "next buffer" },
-    { "<S-Tab>",    "<cmd>bp<cr>",                                                                               desc = "prev buffer" },
-})
-
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
+        local wk = require("which-key")
+
         -- don't register keys for null-ls
         local client_id = ev.data.client_id
         local client_name = vim.lsp.get_client_by_id(client_id).name
@@ -71,14 +28,79 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { "<leader>lC", function() vim.lsp.buf.outgoing_calls() end, desc = "outgoing calls" },
             { "<leader>lR", function() vim.lsp.buf.references() end,     desc = "references" },
             { "<leader>lr", function() vim.lsp.buf.rename() end,         desc = "rename" },
+
+
+            { "]m",         desc = "go to next function start" },
+            { "]M",         desc = "go to next function end" },
+            { "]]",         desc = "go to next class start" },
+            { "][",         desc = "go to next class end" },
+            { "]o",         desc = "go to next loop" },
+            { "]s",         desc = "go to next scope" },
+            { "[m",         desc = "go to prev function start" },
+            { "[M",         desc = "go to prev function end" },
+            { "[[",         desc = "go to prev class start" },
+            { "[]",         desc = "go to prev class end" },
+            { "<leader>lp", desc = "peek function definition" },
+            { "<leader>lP", desc = "peek class definition" },
+            { "ys",         group = "insert surround" },
+            { "ds",         group = "delete surround" },
+            { "cs",         group = "change surround" },
         })
     end,
 })
 
-vim.cmd([[
-    " Jump forward or backward
-    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-]])
+vim.api.nvim_set_keymap('i', '<Tab>', 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"',
+    { expr = true, noremap = false })
+vim.api.nvim_set_keymap('s', '<Tab>', 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"',
+    { expr = true, noremap = false })
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"',
+    { expr = true, noremap = false })
+vim.api.nvim_set_keymap('s', '<S-Tab>', 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"',
+    { expr = true, noremap = false })
+
+local show_frames = function()
+    local widgets = require("dap.ui.widgets")
+    widgets.centered_float(widgets.frames)
+end
+local show_locals = function()
+    local widgets = require("dap.ui.widgets")
+    widgets.centered_float(widgets.scopes)
+end
+
+-- keybind helper
+return {
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {
+            spec = {
+                { "<leader>f",  group = "find" },
+                { "<leader>ff", function() require("telescope.builtin").find_files() end,                                    desc = "find file" },
+                { "<leader>fg", function() require("telescope.builtin").live_grep() end,                                     desc = "live grep" },
+                { "<leader>fb", function() require("telescope.builtin").buffers() end,                                       desc = "find buffer" },
+                { "<leader>fh", function() require("telescope.builtin").help_tags() end,                                     desc = "help tags" },
+
+                { "<leader>D",  "<cmd>Dirbuf<cr>",                                                                           desc = "dirbuf" },
+
+                { "<F6>",       function() require("dap").terminate() end,                                                   desc = "terminate" },
+                { "<F10>",      function() require("dap").step_over() end,                                                   desc = "step over" },
+                { "<F11>",      function() require("dap").step_into() end,                                                   desc = "step into" },
+                { "<F12>",      function() require("dap").step_out() end,                                                    desc = "step out" },
+
+                { "<leader>d",  group = "debugging" },
+                { "<leader>db", function() require("dap").toggle_breakpoint() end,                                           desc = "toggle breakpoint" },
+                { "<leader>dB", function() require("dap").set_breakpoint() end,                                              desc = "set breakpoint" },
+                { "<leader>dl", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end, desc = "set log point" },
+                { "<leader>dr", function() require("dap").repl.open() end,                                                   desc = "open repl" },
+                { "<leader>du", function() require("dap").up() end,                                                          desc = "go up one frame" },
+                { "<leader>dd", function() require("dap").down() end,                                                        desc = "go down one frame" },
+                { "<leader>df", show_frames,                                                                                 desc = "frames" },
+                { "<leader>ds", show_locals,                                                                                 desc = "locals" },
+            }
+        },
+    },
+}

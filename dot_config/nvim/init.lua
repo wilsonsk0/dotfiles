@@ -21,7 +21,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("plugins")
-require("keymap")
 
 vim.cmd.colorscheme "catppuccin-macchiato"
 
