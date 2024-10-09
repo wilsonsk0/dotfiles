@@ -107,7 +107,6 @@ require("lazy").setup({
                 ensure_installed = {
                     "black",
                     "codespell",
-                    "glslls",
                 },
             })
         end,
