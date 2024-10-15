@@ -22,6 +22,7 @@ require("lazy").setup({
                 "black",
                 "codespell",
                 "glslls",
+                "cmakelint",
             },
         },
     },
