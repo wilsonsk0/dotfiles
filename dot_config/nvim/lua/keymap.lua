@@ -84,8 +84,13 @@ return {
                 { "<leader>fb", function() require("telescope.builtin").buffers() end,                                       desc = "find buffer" },
                 { "<leader>fh", function() require("telescope.builtin").help_tags() end,                                     desc = "help tags" },
 
-                { "<leader>D",  "<cmd>Dirbuf<cr>",                                                                           desc = "dirbuf" },
+                { "<leader>t",  group = "tree" },
+                { "<leader>tf", "<cmd>Neotree float reveal<CR>",                                                             desc = "files" },
+                { "<leader>tl", "<cmd>Neotree left reveal<CR>",                                                              desc = "files" },
+                { "<leader>tg", "<cmd>Neotree float git_status<CR>",                                                         desc = "git_status" },
+                { "<leader>tb", "<cmd>Neotree float buffers<CR>",                                                            desc = "buffers" },
 
+                { "<F5>",       function() require("dap").continue() end,                                                    desc = "continue" },
                 { "<F6>",       function() require("dap").terminate() end,                                                   desc = "terminate" },
                 { "<F10>",      function() require("dap").step_over() end,                                                   desc = "step over" },
                 { "<F11>",      function() require("dap").step_into() end,                                                   desc = "step into" },

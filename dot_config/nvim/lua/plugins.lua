@@ -61,16 +61,34 @@ require("lazy").setup({
         opts = {},
     },
 
+    -- file explorer	
     {
-        "elihunter173/dirbuf.nvim",
-        opts = {
-            hash_padding = 2,
-            show_hidden = true,
-            sort_order = "default",
-            write_cmd = "DirbufSync",
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
+        init = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            vim.opt.termguicolors = true
+        end,
+        config = function()
+            require("neo-tree").setup({
+                enable_cursor_hijack = true,
+                close_if_last_window = true,
+                popup_border_style = "rounded",
+                window = {
+                    position = "float",
+                },
+                filesystem = {
+                    hijack_netrw_behavior = "open_default",
+                },
+            })
+        end,
     },
-
 
     require("textobjects"),
     require("completion"),
