@@ -64,32 +64,22 @@ require("lazy").setup({
 
     -- file explorer
     {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {
+            default_file_explorer = true,
+            delete_to_trash = true,
+            watch_for_changes = true,
+            view_options = {
+                show_hidden = true,
+            }
         },
-        init = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-            vim.opt.termguicolors = true
-        end,
-        config = function()
-            require("neo-tree").setup({
-                enable_cursor_hijack = true,
-                close_if_last_window = true,
-                popup_border_style = "rounded",
-                window = {
-                    position = "float",
-                },
-                filesystem = {
-                    hijack_netrw_behavior = "open_default",
-                },
-            })
-        end,
+        -- Optional dependencies
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        version = '*',
     },
+
 
     {
         "williamboman/mason.nvim",
