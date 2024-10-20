@@ -1,9 +1,0 @@
-.gitconfig
-.tmux/
-.tmux.conf
-.fzf/
-.pyenv/
-.config/chezmoi/chezmoi.toml
-.rustup/
-.cargo/
-
