@@ -63,14 +63,22 @@ require("lazy").setup({
     },
 
     {
-        "elihunter173/dirbuf.nvim",
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
         opts = {
-            hash_padding = 2,
-            show_hidden = true,
-            sort_order = "default",
-            write_cmd = "DirbufSync",
+            default_file_explorer = true,
+            delete_to_trash = true,
+            watch_for_changes = true,
+            view_options = {
+                show_hidden = true,
+            }
         },
+        -- Optional dependencies
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        version = '*',
     },
+
 
     {
         "williamboman/mason.nvim",

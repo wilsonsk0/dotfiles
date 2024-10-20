@@ -83,8 +83,7 @@ return {
                 { "<leader>fg", function() require("telescope.builtin").live_grep() end,                                     desc = "live grep" },
                 { "<leader>fb", function() require("telescope.builtin").buffers() end,                                       desc = "find buffer" },
                 { "<leader>fh", function() require("telescope.builtin").help_tags() end,                                     desc = "help tags" },
-
-                { "<leader>D",  "<cmd>Dirbuf<cr>",                                                                           desc = "dirbuf" },
+                { "-", "<cmd>Oil<cr>", desc = "Open parent directory"},
 
                 { "<F6>",       function() require("dap").terminate() end,                                                   desc = "terminate" },
                 { "<F10>",      function() require("dap").step_over() end,                                                   desc = "step over" },
