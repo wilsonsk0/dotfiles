@@ -10,13 +10,6 @@ return {
             'hrsh7th/vim-vsnip',
             'wilsonsk0/nvim-snippets',
         },
-        opts = function(_, opts)
-            opts.sources = opts.sources or {}
-            table.insert(opts.sources, {
-                name = "lazydev",
-                group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-            })
-        end,
         config = function()
             local cmp = require 'cmp'
             cmp.setup({
@@ -90,6 +83,17 @@ return {
                     { name = 'cmdline' }
                 }),
                 matching = { disallow_symbol_nonprefix_matching = false }
+            })
+
+            cmp.setup.filetype('lua', {
+                sources = cmp.config.sources({
+                    { name = 'nvim_lsp' },
+                    { name = 'vsnip' },
+                    { name = 'path' },
+                    { name = 'lazydev', group_index = 0 },
+                }, {
+                    { name = 'buffer' },
+                })
             })
         end
     },

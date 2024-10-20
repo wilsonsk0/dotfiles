@@ -1,3 +1,17 @@
+-- setup folke/lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+
 require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
@@ -13,18 +27,6 @@ require("lazy").setup({
 
     require("appearance"),
     require("git"),
-
-    -- package manager
-    {
-        "williamboman/mason.nvim",
-        opts = {
-            ensure_installed = {
-                "black",
-                "codespell",
-                "glslls",
-            },
-        },
-    },
 
     { 'voldikss/vim-floaterm' },
 
@@ -68,6 +70,14 @@ require("lazy").setup({
             sort_order = "default",
             write_cmd = "DirbufSync",
         },
+    },
+
+    {
+        "williamboman/mason.nvim",
+        name = "mason",
+        config = function()
+            require("mason").setup()
+        end
     },
 
 
