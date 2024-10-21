@@ -27,7 +27,7 @@ exec wl-paste --type image --watch cliphist store
 exec swaync
 exec nm-applet
 exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
-exec $HOME/.scripts/wall.sh
+exec $HOME/.local/share/scripts/wall.sh
 exec swayosd-server
 
 focus_follows_mouse no
