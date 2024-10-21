@@ -18,6 +18,13 @@ return {
             },
         },
     },
+
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
     -- icons
     {
         "echasnovski/mini.icons",
@@ -41,28 +48,28 @@ return {
         config = function()
             vim.opt.termguicolors = true
             require("bufferline").setup({
-            highlights = require("catppuccin.groups.integrations.bufferline").get(),
-            options = {
-                indicator = { style = "underline" },
-                diagnostics = "nvim_lsp",
-                offsets = {
-                    {
-                        filetype = "neo-tree",
-                        text = "",
-                        text_align = "left",
-                        separator = true,
-                    }
-                },
-                show_close_icon = false,
-                custom_filter = function(buf_number)
-                    if vim.bo[buf_number].filetype ~= "qf" then
-                        return true
-                    end
-                    return false
-                end,
-            }
-        })
-    end,
+                highlights = require("catppuccin.groups.integrations.bufferline").get(),
+                options = {
+                    indicator = { style = "underline" },
+                    diagnostics = "nvim_lsp",
+                    offsets = {
+                        {
+                            filetype = "neo-tree",
+                            text = "",
+                            text_align = "left",
+                            separator = true,
+                        }
+                    },
+                    show_close_icon = false,
+                    custom_filter = function(buf_number)
+                        if vim.bo[buf_number].filetype ~= "qf" then
+                            return true
+                        end
+                        return false
+                    end,
+                }
+            })
+        end,
     },
     -- info line along the bottom
     {
