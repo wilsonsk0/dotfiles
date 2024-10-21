@@ -1,7 +1,7 @@
 [init]
 	defaultBranch = main
 [user]
-	email = {{ .email | quote }}
+	email = "skwilson03@proton.me"
     name = Sam Wilson
 [core]
 	editor = nvim
@@ -30,12 +30,11 @@
    process = git-lfs filter-process
    required = true
    clean = git-lfs clean -- %f
-{{- if .gcm }}
 [credential]
 	credentialStore = secretservice
+	helper = libsecret
 [credential "https://dev.azure.com"]
 	useHttpPath = true
-{{- end }}
 
 [rerere]
     enable = true
