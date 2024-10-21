@@ -8,6 +8,6 @@ vim.g.vsnip_snippet_dir = vim.fn.stdpath("data") .. "/snippets"
 
 require("plugins")
 
-vim.cmd.colorscheme "catppuccin-macchiato"
+vim.cmd.colorscheme "tokyonight"
 
 
