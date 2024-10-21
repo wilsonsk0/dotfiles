@@ -3,10 +3,10 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term wezterm
+set $term alacritty
 set $menu $HOME/.local/share/scripts/launcher.sh
-set $explorer $term start ranger
-set $browser zen-browser
+set $explorer thunar
+set $browser firefox
 
 gaps inner 6
 gaps outer 3
