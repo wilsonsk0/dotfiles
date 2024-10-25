@@ -1,0 +1,6 @@
+[submodule "dot_config/private_zsh/private_oh-my-zsh/private_custom/private_themes/external_private_powerlevel10k"]
+	path = dot_config/private_zsh/private_oh-my-zsh/private_custom/private_themes/external_private_powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "dot_local/private_share/external_private_oh-my-zsh"]
+	path = dot_local/private_share/external_private_oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
