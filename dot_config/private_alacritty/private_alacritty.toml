@@ -1,6 +1,6 @@
-live_config_reload = true
-
+[general]
 import = ["~/.config/alacritty/tokyo-night.toml"]
+live_config_reload = true
 
 [bell]
 animation = "EaseOutExpo"
@@ -23,7 +23,7 @@ text = "0x1E1D2F"
 
 [env]
 TERM = "xterm-256color"
-SHELL = "/usr/bin/fish"
+SHELL = "/usr/bin/zsh"
 
 [font]
 size = 12
@@ -57,7 +57,7 @@ mouse = "Middle"
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[shell]
+[terminal.shell]
 program = "tmux"
 
 [window]
@@ -73,3 +73,5 @@ lines = 80
 [window.padding]
 x = 4
 y = 4
+
+[terminal]
