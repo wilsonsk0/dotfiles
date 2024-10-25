@@ -30,11 +30,11 @@
     process = git-lfs filter-process
     required = true
     clean = git-lfs clean -- %f
-{{- if .gcm }}
 [credential]
     credentialStore = secretservice
-[credential "https://dev.azure.com"]
-    useHttpPath = true
-{{- end }}
+    helper = cache --timeout 21600
+    helper = oauth
 [rerere]
     enabled = true
+[credential "https://gitlab.bluehalo.com"]
+    oauthClientId = $GITLAB_OAUTH_CLIENT_ID
