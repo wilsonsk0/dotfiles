@@ -36,6 +36,7 @@ return {
   {
     'stevearc/overseer.nvim',
     opts = {},
+    enabled = false,
   },
   {
     'Shatur/neovim-tasks',
@@ -49,7 +50,7 @@ return {
   {
     "Civitasv/cmake-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    enabled = false,
+    enabled = true,
     cond = function()
       local search_results = vim.fs.find("CMakeLists.txt", {
         upward = true,
