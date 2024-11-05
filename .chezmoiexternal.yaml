@@ -1,8 +1,12 @@
-.config/zsh/oh-my-zsh/custom/themes/powerlevel10k:
-  type: git-repo
-  url: https://github.com/romkatv/powerlevel10k.git
-  refreshPeriod: 168h
-.local/share/oh-my-zsh:
-  type: git-repo
-  url: https://github.com/ohmyzsh/ohmyzsh.git
-  refreshPeriod: 168h
+.local/bin:
+  type: "archive"
+  url: "https://github.com/junegunn/fzf/releases/download/v0.56.0/fzf-0.56.0-linux_amd64.tar.gz"
+.local/share/pyenv:
+  type: "git-repo"
+  url: "https://github.com/pyenv/pyenv.git"
+  refreshPeriod: "168h"
+.local/share/pyenv/plugins/pyenv-virtualenv:
+  type: "git-repo"
+  url: "https://github.com/pyenv/pyenv-virtualenv.git"
+  refreshPeriod: "168h"
+
