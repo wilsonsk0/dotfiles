@@ -113,4 +113,5 @@ require("lazy").setup({
   require("cmake"),
 
   require("keymap"),
+  { "fraso-dev/nvim-listchars", config = true }
 })

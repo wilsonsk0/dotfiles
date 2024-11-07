@@ -2,4 +2,4 @@ export PATH=$PATH:$HOME/.local/bin
 
 export RUSTUP_HOME=$HOME/.local/share/rustup
 export CARGO_HOME=$HOME/.local/share/cargo
-export PYENV_ROOT=$HOME/.local/share/pyenv
+. "/home/wilsonsk/.local/share/cargo/env"
