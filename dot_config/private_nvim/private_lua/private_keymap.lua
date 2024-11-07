@@ -100,6 +100,11 @@ return {
                 { "<leader>dd", function() require("dap").down() end,                                                        desc = "go down one frame" },
                 { "<leader>df", show_frames,                                                                                 desc = "frames" },
                 { "<leader>ds", show_locals,                                                                                 desc = "locals" },
+
+                { "<leader>s", group = "session" },
+                { "<leader>ss", function() require("resession").save() end, desc = "save session" },
+                { "<leader>sl", function() require("resession").load() end, desc = "load session" },
+                { "<leader>sd", function() require("resession").delete() end, desc = "delete session" },
             }
         },
     },
