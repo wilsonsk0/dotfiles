@@ -114,5 +114,5 @@ require("lazy").setup({
   require("sessions"),
 
   require("keymap"),
-  { "fraso-dev/nvim-listchars", config = true }
+  { "fraso-dev/nvim-listchars", config = true },
 })

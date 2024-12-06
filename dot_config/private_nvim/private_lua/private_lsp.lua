@@ -30,6 +30,16 @@ return {
   },
 
   {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    lazy = false,
+    opts = {},
+    config = true,
+  },
+  {
     "jay-babu/mason-null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
@@ -40,15 +50,24 @@ return {
       require("mason-null-ls").setup({
         ensure_installed = {
           "codespell",
+          "cppcheck",
+          "black",
+          "isort",
         },
         automatic_installation = false,
       })
+
       local null_ls = require("null-ls")
       null_ls.setup({
         sources = {
+          null_ls.builtins.code_actions.refactoring,
           null_ls.builtins.diagnostics.codespell,
           null_ls.builtins.diagnostics.cppcheck,
+
           null_ls.builtins.formatting.black,
+          null_ls.builtins.formatting.isort,
+          null_ls.builtins.diagnostics.mypy,
+
         }
       })
     end,
