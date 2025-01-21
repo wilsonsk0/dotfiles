@@ -36,8 +36,9 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     lazy = false,
-    opts = {},
-    config = true,
+    config = function()
+      require("refactoring").setup()
+    end,
   },
   {
     "jay-babu/mason-null-ls.nvim",
@@ -77,5 +78,16 @@ return {
     "neovim/nvim-lspconfig",
     event = { 'BufNewFile', 'BufReadPre' },
     dependencies = { "williamboman/mason-lspconfig.nvim" }
+  },
+  {
+    'p00f/clangd_extensions.nvim',
+    config = true,
+    opts = {
+      extensions = {
+        inlay_hints = {
+          only_current_line = false,
+        },
+      },
+    },
   },
 }

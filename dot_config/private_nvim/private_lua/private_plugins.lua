@@ -21,7 +21,7 @@ require("lazy").setup({
     },
     config = function()
       require("luarocks").setup({
-        rocks = {"luafilesystem"},
+        rocks = { "luafilesystem" },
       })
 
       -- local lfs = require('lfs')
@@ -31,6 +31,13 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     event = { 'BufNewFile', 'BufReadPre' },
+    opts = {
+      ensure_installed = { "cpp", "c" },
+      highlight = {
+        enabled = true,
+        additional_vim_regex_highlighting = false,
+      },
+    },
     config = function(opts)
       require("nvim-treesitter.configs").setup(opts)
       vim.cmd [[TSUpdate]]
