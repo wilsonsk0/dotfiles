@@ -70,17 +70,21 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+export CARGO_HOME="$HOME/.local/share/cargo"
+export RUSTUP_HOME="$HOME/.local/share/rustup"
+source $CARGO_HOME/env
+
 ZOXIDE_CMD_OVERRIDE=cd
 
 plugins=(
-	git 
-	direnv
-	docker
-       	fzf
-       	man
-       	nvm
-       	tldr
-	zoxide
+    git 
+    direnv
+    docker
+    fzf
+    man
+    nvm
+    tldr
+    zoxide
 )
 
 zstyle ':completion:*:*:docker:*' option-stacking yes
@@ -122,3 +126,6 @@ alias ls='ls --group-directories-first --color=auto'
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+fpath+=(~/.config/zsh/functions)
+autoload -Uz alertme

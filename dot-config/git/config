@@ -1,5 +1,3 @@
-[init]
-    defaultBranch = main
 [user]
     email = "samuel.wilson@bluehalo.com"
     name = Sam Wilson
@@ -8,6 +6,25 @@
     autocrlf = input
     pager = delta --diff-so-fancy
     excludesFile = $HOME/.config/git/ignore
+    fsmonitor = true
+    untrackedCache = true
+
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[init]
+    defaultBranch = main
+
+# diff opts
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+	submodule = log
 [interactive]
     diffFilter = delta --color-only --diff-so-fancy
 [delta]
@@ -15,12 +32,36 @@
     features = side-by-side
 [merge]
     conflictstyle = diff3
-[diff]
-    colorMoved = default
+
+# push, pull, fetch, rebase
+[pull]
+    rebase = true
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+	recurseSubmodules = on-demand
+[fetch]
+    prune = true
+	prunetags = false
+    all = true
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[help]
+    autocorrect = prompt
+[commit]
+    verbose = true
+[rerere]
+    enabled = true
+    autoupdate = true
+
 [alias]
     find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
     show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
-    fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+    fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs git commit --fixup"
     graph = "log --graph --oneline"
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
@@ -30,13 +71,18 @@
 [credential]
     helper = cache --timeout 28800
     helper = oauth
-[rerere]
-    enabled = true
-[pull]
-    ff = only
 [credential "https://gitlab.bluehalo.com"]
     oauthClientId = 7b523090a991c3bfb1514aaefa6f34e79101e6e03f7b5e603db39c53cec52e93
     oauthScopes = "read_repository write_repository"
     oauthAuthURL = /oauth/authorize
     oauthTokenURL = /oauth/token
     oauthDeviceAuthURL = /oauth/authorize_device
+
+[maintenance]
+	repo = /home/wilsonsk/Repos/jsig
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[status]
+	submodulesummary = 1
+[submodule]
+	recurse = true

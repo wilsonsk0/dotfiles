@@ -1,0 +1,5 @@
+# ~/.config/zsh/functions/alertme
+
+alertme() {
+    "$@" && tmux display-message "✔ '$*' finished"
+}
