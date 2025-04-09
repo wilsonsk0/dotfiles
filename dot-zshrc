@@ -126,3 +126,5 @@ export NVM_DIR="$HOME/.config/nvm"
 
 fpath+=(~/.config/zsh/functions)
 autoload -Uz alertme
+
+unsetopt autopushd
