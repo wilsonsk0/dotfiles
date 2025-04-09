@@ -6,7 +6,7 @@ return {
             require("mason").setup()
             local m_lspconfig = require("mason-lspconfig")
             m_lspconfig.setup {
-                ensure_installed = { "lua_ls" },
+                ensure_installed = { "lua_ls", "clangd" },
             }
             m_lspconfig.setup_handlers {
                 function(server_name)
