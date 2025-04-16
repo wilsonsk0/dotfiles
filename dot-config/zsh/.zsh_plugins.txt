@@ -1,0 +1,8 @@
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+MichaelAquilina/zsh-you-should-use
+ 
+belak/zsh-utils path:editor
+belak/zsh-utils path:history
+belak/zsh-utils path:prompt
+belak/zsh-utils path:utility

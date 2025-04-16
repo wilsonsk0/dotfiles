@@ -1,3 +1,6 @@
 [submodule "dot-local/share/tmux/plugins/tpm"]
 	path = dot-local/share/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule "dot-config/zsh/.antidote"]
+	path = dot-config/zsh/.antidote
+	url = https://github.com/mattmc3/antidote.git
