@@ -1,3 +1,3 @@
 #!/bin/sh
 
-stow -t $HOME --dotfiles --restow .
+stow -t $HOME --no-folding --dotfiles --restow .

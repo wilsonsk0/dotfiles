@@ -1,22 +1,7 @@
-autoload -Uz compinit 
-compinit
+#!/usr/bin/env zsh
 
-autoload -Uz promptinit
-promptinit
-prompt default
-
-# zstyle ':antidote:bundle' use-friendly-names 'yes'
-source $ZDOTDIR/.antidote/antidote.zsh
-antidote load
-
-eval "$(direnv hook zsh)"
-eval "$(zoxide init zsh)"
-eval "$(fzf --zsh)"
-
-# if tmux, make fzf use tmux popups
-if [[ -n $TMUX ]]; then
-    fzf() {
-        command fzf --tmux "$@"
-    }
-fi
-
+source $ZDOTDIR/.zsh.d/aliases.zsh
+source $ZDOTDIR/.zsh.d/completion.zsh
+source $ZDOTDIR/.zsh.d/plugins.zsh
+source $ZDOTDIR/.zsh.d/prompt.zsh
+source $ZDOTDIR/.zsh.d/utilities.zsh
