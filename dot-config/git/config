@@ -21,7 +21,7 @@
 # diff opts
 [diff]
     algorithm = histogram
-    colorMoved = plain
+    colorMoved = dimmed-zebra
     mnemonicPrefix = true
     renames = true
 	submodule = log
@@ -31,7 +31,7 @@
     navigate = true
     features = side-by-side
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 # push, pull, fetch, rebase
 [pull]
@@ -78,8 +78,6 @@
     oauthTokenURL = /oauth/token
     oauthDeviceAuthURL = /oauth/authorize_device
 
-[maintenance]
-	repo = /home/wilsonsk/Repos/jsig
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [status]
