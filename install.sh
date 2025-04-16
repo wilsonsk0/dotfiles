@@ -1,3 +1,3 @@
 #!/bin/sh
 
-stow -D .
+stow -t $HOME --dotfiles --restow .
